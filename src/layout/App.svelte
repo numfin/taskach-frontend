@@ -8,6 +8,9 @@
     margin: 0;
     padding: 0;
   }
+  :global(:root.dark) {
+    background-color: var(--color-bg-behind);
+  }
 </style>
 
 <main>
