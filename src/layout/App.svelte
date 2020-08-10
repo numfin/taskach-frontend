@@ -8,9 +8,6 @@
     margin: 0;
     padding: 0;
   }
-  :global(:root.dark) {
-    background-color: var(--color-bg-behind);
-  }
 </style>
 
 <main>
@@ -18,9 +15,3 @@
 </main>
 
 <Theme />
-
-<svelte:head>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap"
-    rel="stylesheet" />
-</svelte:head>

@@ -1,8 +1,8 @@
-import Header from "./Header.view.svelte";
+import HeaderDefaultView from "./HeaderDefault.view.svelte";
 
 export default {
   title: "Header",
 };
-export const header = () => ({
-  Component: Header,
+export const HeaderDefault = () => ({
+  Component: HeaderDefaultView,
 });
