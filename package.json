@@ -2,32 +2,16 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "scripts": {
-    "start": "sirv public",
-    "validate": "svelte-check",
-    "dev": "rollup -c -w",
-    "build": "rollup -c",
-    "dev:story": "start-storybook",
-    "build:story": "build-storybook"
+    "dev": "vite",
+    "build": "vite build"
   },
   "devDependencies": {
-    "@babel/core": "^7.11.1",
-    "@rollup/plugin-commonjs": "^12.0.0",
-    "@rollup/plugin-node-resolve": "^8.0.0",
-    "@rollup/plugin-typescript": "^4.0.0",
-    "@storybook/svelte": "^6.0.2",
-    "@tsconfig/svelte": "^1.0.0",
-    "babel-loader": "^8.1.0",
-    "rollup": "^2.3.4",
-    "rollup-plugin-livereload": "^1.0.0",
-    "rollup-plugin-svelte": "^5.0.3",
-    "rollup-plugin-terser": "^5.1.2",
-    "sirv-cli": "^1.0.5",
-    "svelte": "^3.0.0",
-    "svelte-check": "^1.0.0",
-    "svelte-loader": "^2.13.6",
-    "svelte-preprocess": "^4.0.0",
-    "tslib": "^2.0.0",
-    "typescript": "^3.9.7"
+    "@tsconfig/svelte": "^1.0.10",
+    "svelte": "^3.24.1",
+    "svelte-preprocess": "^4.1.1",
+    "typescript": "^3.9.7",
+    "vite": "^1.0.0-rc.4",
+    "vite-plugin-svelte": "^2.4.0"
   },
   "dependencies": {}
 }

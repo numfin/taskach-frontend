@@ -7,10 +7,8 @@ RUN npm ci
 
 COPY . .
 RUN npm run build
-RUN npm run build:story
 
 FROM nginx:alpine as deploy
 
-COPY --from=build /usr/app/public/ /usr/share/nginx/html/app/
-COPY --from=build /usr/app/storybook-static/ /usr/share/nginx/html/storybook/
+COPY --from=build /usr/app/dist/ /usr/share/nginx/html/
 COPY nginx.conf /etc/nginx/conf.d/default.conf
