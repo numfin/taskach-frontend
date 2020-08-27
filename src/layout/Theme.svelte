@@ -35,8 +35,11 @@
 
     --text-normal: 14px/21px var(--font-family);
     --text-small: 13px/20px var(--font-family);
+  }
 
-    background-color: var(--color-bg-behind);
+  :global(*) {
+    margin: 0;
+    padding: 0;
   }
   :global(button) {
     padding: 0;

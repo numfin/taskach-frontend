@@ -1,13 +1,22 @@
 <script lang="ts">
-  import ArrowDown from "@/icons/ArrowDown.svelte";
+  import ArrowDown from "/src/icons/ArrowDown.svelte";
 
   type ComboboxItem = { title: string; value: string };
   export let items: ComboboxItem[] = [];
   export let opened = false;
   export let search = "";
+  export let value: ComboboxItem | null;
+
+  function pickItem(item: ComboboxItem) {
+    value = item;
+    opened = false;
+  }
+  function openDropdown() {
+    opened = !opened;
+  }
 </script>
 
-<style>
+<style type="text/scss">
   .combobox {
     position: relative;
     display: block;
@@ -51,7 +60,6 @@
 
   .dropdown-container {
     width: 240px;
-    height: 245px;
     background-color: var(--color-interactive-bg-active);
     border: 1px solid var(--color-border-main);
     position: absolute;
@@ -73,6 +81,20 @@
     padding: 0 6px;
     box-sizing: border-box;
     color: var(--color-text-primary);
+  }
+  .dropdown-items {
+    max-height: 245px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      background-color: var(--color-bg-main);
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--color-bg-accent);
+      border-radius: 3px;
+    }
   }
   .dropdown-item {
     height: 40px;
@@ -98,8 +120,8 @@
 </style>
 
 <label for="search-input" class="combobox">
-  <div class="value-container" on:click={() => (opened = !opened)} class:opened>
-    <div class="value">vrcube</div>
+  <div class="value-container" on:click={openDropdown} class:opened>
+    <div class="value">{value?.title ?? 'Not chosen'}</div>
     <div class="button-toggle" class:opened>
       <ArrowDown />
     </div>
@@ -116,7 +138,7 @@
 
       <div class="dropdown-items">
         {#each items as item}
-          <div class="dropdown-item">
+          <div class="dropdown-item" on:click={() => pickItem(item)}>
             <div class="item-title">{item.title}</div>
             <div class="item-subtitle">{item.value}</div>
           </div>

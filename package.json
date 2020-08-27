@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
+    "dev:story": "vite -c vite-stories.config.js",
     "build": "vite build"
   },
   "devDependencies": {
     "@tsconfig/svelte": "^1.0.10",
+    "sass": "^1.26.10",
     "svelte": "^3.24.1",
     "svelte-preprocess": "^4.1.1",
     "typescript": "^3.9.7",

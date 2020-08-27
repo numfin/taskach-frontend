@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Cart } from "/@/icons";
+  import { Cart } from "/src/icons";
 </script>
 
 <style>

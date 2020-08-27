@@ -1,11 +1,12 @@
 {
   "extends": "@tsconfig/svelte/tsconfig.json",
-  "include": ["src/**/*", "src/node_modules"],
+  "include": ["src/**/*", "stories/**/*", "src/node_modules"],
   "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "/@/*": ["src/*"]
+      "/src/*": ["src/*"],
+      "/stories/*": ["stories/*"]
     },
     "module": "esnext",
     "moduleResolution": "node"
