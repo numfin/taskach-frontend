@@ -1,4 +1,6 @@
 <script lang="ts">
+  import type { ComboboxItem } from "../Combobox.model";
+
   import Combobox from "../Combobox.svelte";
   let items = [
     { title: "item 1", value: "1" },
@@ -10,7 +12,7 @@
     { title: "item 7", value: "7" },
   ];
   let search = "";
-  let value = null;
+  let value: ComboboxItem;
   $: filteredItems = items.filter((item) => item.title.startsWith(search));
 </script>
 
