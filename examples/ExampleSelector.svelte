@@ -21,7 +21,9 @@
 
     if (lastActive) {
       const foundExample = examples.find(({ name }) => name === lastActive);
-      return setActiveExample(foundExample);
+      if (foundExample) {
+        return setActiveExample(foundExample);
+      }
     }
     setActiveExample(examples[0]);
   }
