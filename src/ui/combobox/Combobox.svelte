@@ -14,11 +14,24 @@
 
   function pickItem(item: ComboboxItem) {
     value = item || defaultValue;
-    opened = false;
+    closeDropdown();
   }
   function openDropdown() {
-    opened = !opened;
+    opened = true;
   }
+  function closeDropdown() {
+    opened = false;
+  }
+  function toggleDropdown() {
+    opened ? closeDropdown() : openDropdown();
+  }
+  function handleWindowClick(e: MouseEvent) {
+    if (container && !container.contains(e.target as Node)) {
+      closeDropdown();
+    }
+  }
+
+  let container: HTMLLabelElement;
 </script>
 
 <style type="text/scss">
@@ -125,8 +138,8 @@
   }
 </style>
 
-<label for="search-input" class="combobox">
-  <div class="value-container" on:click={openDropdown} class:opened>
+<label for="search-input" class="combobox" bind:this={container}>
+  <div class="value-container" on:click={toggleDropdown} class:opened>
     <div class="value">{value?.title ?? defaultTitle}</div>
     <div class="button-toggle" class:opened>
       <ArrowDown />
@@ -153,3 +166,5 @@
     </div>
   {/if}
 </label>
+
+<svelte:window on:click={handleWindowClick} />
