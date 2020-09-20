@@ -4,8 +4,8 @@
 
   $: {
     const html = document.querySelector("html");
-    html.classList.remove(...themes);
-    html.classList.add(theme);
+    html?.classList.remove(...themes);
+    html?.classList.add(theme);
   }
 </script>
 
