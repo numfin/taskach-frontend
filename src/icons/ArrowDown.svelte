@@ -1,9 +1,10 @@
 <script lang="ts">
   export let size = 24;
+  const id = `arrow-down-${Math.random().toString(16).slice(-6)}`;
 </script>
 
 <svg width={size} height={size} fill="none" xmlns="http://www.w3.org/2000/svg">
-  <g filter="url(#arrow_down_filter)">
+  <g filter={`url(#${id})`}>
     <path
       d="M6 9l6 6 6-6"
       stroke="currentColor"
@@ -13,7 +14,7 @@
   </g>
   <defs>
     <filter
-      id="arrow_down_filter"
+      {id}
       x="4"
       y="8"
       width="16"
