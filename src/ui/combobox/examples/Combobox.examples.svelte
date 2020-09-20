@@ -1,7 +1,7 @@
 <script lang="ts">
-  import type { ComboboxItem } from "../Combobox.model";
-
+  import type { ComboboxItem } from "..";
   import Combobox from "../Combobox.svelte";
+
   let items = [
     { title: "item 1", value: "1" },
     { title: "item 2", value: "2" },

@@ -1,11 +1,11 @@
 <script lang="ts">
+  import type { ComboboxItem } from ".";
   import ArrowDown from "/src/icons/ArrowDown.svelte";
 
-  type ComboboxItem = { title: string; value: string };
   export let items: ComboboxItem[] = [];
   export let opened = false;
   export let search = "";
-  export let value: ComboboxItem | null;
+  export let value: ComboboxItem | null = null;
 
   function pickItem(item: ComboboxItem) {
     value = item;
@@ -85,6 +85,7 @@
   .dropdown-items {
     max-height: 245px;
     overflow-y: auto;
+    padding-bottom: 10px;
 
     &::-webkit-scrollbar {
       background-color: var(--color-bg-main);
