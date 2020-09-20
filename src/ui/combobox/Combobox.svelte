@@ -2,13 +2,18 @@
   import type { ComboboxItem } from ".";
   import ArrowDown from "/src/icons/ArrowDown.svelte";
 
-  export let items: ComboboxItem[] = [];
   export let opened = false;
+
+  export let items: ComboboxItem[] = [];
   export let search = "";
-  export let value: ComboboxItem | null = null;
+
+  export let defaultTitle = "Not chosen";
+  export let defaultValue: ComboboxItem | null = null;
+
+  export let value: ComboboxItem | null = defaultValue;
 
   function pickItem(item: ComboboxItem) {
-    value = item;
+    value = item || defaultValue;
     opened = false;
   }
   function openDropdown() {
@@ -122,7 +127,7 @@
 
 <label for="search-input" class="combobox">
   <div class="value-container" on:click={openDropdown} class:opened>
-    <div class="value">{value?.title ?? 'Not chosen'}</div>
+    <div class="value">{value?.title ?? defaultTitle}</div>
     <div class="button-toggle" class:opened>
       <ArrowDown />
     </div>
