@@ -1,6 +1,6 @@
 <script lang="ts">
   import Theme from "/src/layout/Theme.svelte";
-  import { ComboboxExamples } from "/src/ui/combobox/examples/Combobox.examples";
+  import { ComboboxExamples } from "/src/ui/forms/combobox/examples/Combobox.examples";
   import { TaskExamples } from "/src/ui/task/examples/Task.examples";
   import type { Example } from "./createExample";
 

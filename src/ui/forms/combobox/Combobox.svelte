@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { createEventDispatcher } from "svelte";
+
   import type { ComboboxItem } from ".";
   import ArrowDown from "/src/icons/ArrowDown.svelte";
 
@@ -12,8 +14,11 @@
 
   export let value: ComboboxItem | null = defaultValue;
 
+  const dispatch = createEventDispatcher();
+
   function pickItem(item: ComboboxItem) {
     value = item || defaultValue;
+    dispatch("item", item);
     closeDropdown();
   }
   function openDropdown() {
