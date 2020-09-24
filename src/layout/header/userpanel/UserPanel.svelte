@@ -1,5 +1,4 @@
 <script lang="ts">
-
 </script>
 
 <style>
@@ -11,10 +10,12 @@
   .user-name {
     color: var(--color-text-primary);
     font: var(--text-normal);
+    margin-bottom: -4px;
   }
   .user-surname {
     color: var(--color-text-secondary);
     font: var(--text-small);
+    margin-bottom: -2px;
   }
   .user-name,
   .user-surname {

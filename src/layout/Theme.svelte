@@ -33,7 +33,7 @@
     --header-level-2: bold 18px/28px var(--font-family);
     --header-level-3: bold 14px/21px var(--font-family);
 
-    --text-normal: 14px/21px var(--font-family);
+    --text-normal: 14px/20px var(--font-family);
     --text-small: 13px/20px var(--font-family);
   }
 
