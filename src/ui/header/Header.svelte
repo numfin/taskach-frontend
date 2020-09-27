@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Logo from "./Logo.svelte";
+  import TaskachLogo from "./TaskachLogo.svelte";
   import Userpanel from "./userpanel/UserPanel.svelte";
   import PickerProjects from "./pickers/PickerProjects.svelte";
 </script>
@@ -31,7 +31,7 @@
 
 <header>
   <div class="pickers-with-logo">
-    <Logo />
+    <TaskachLogo />
     <div class="pickers">
       <PickerProjects />
       <PickerProjects />

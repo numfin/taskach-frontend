@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "vite",
     "dev:docs": "vite -c vite-examples.config.js",
-    "build": "vite build",
+    "build": "tsc --noEmit && vite build",
     "build:docs": "vite build -c vite-examples.config.js"
   },
   "devDependencies": {
