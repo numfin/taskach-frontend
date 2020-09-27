@@ -7,10 +7,7 @@
     params?: P["query"];
   }
 
-  export function goto<P extends Page<any>>(
-    page: P,
-    params?: P["query"]
-  ): Place<P> {
+  function goto<P extends Page<any>>(page: P, params?: P["query"]): Place<P> {
     return { page, params };
   }
 
