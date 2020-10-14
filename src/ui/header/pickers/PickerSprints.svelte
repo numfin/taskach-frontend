@@ -6,16 +6,18 @@
   import Combobox from "/src/ui/forms/combobox/Combobox.svelte";
   import InputGroup from "/src/ui/forms/inputgroup/InputGroup.svelte";
 
-  const projects: ComboboxItem[] = [
-    { title: "Project 1", value: "1" },
-    { title: "Project 2", value: "2" },
+  const sprints: ComboboxItem[] = [
+    { title: "Sprint 1", value: "1" },
+    { title: "Sprint 2", value: "2" },
   ];
 
-  function onProjectChange({ detail }: CustomEvent<ComboboxItem>) {
-    router.pushParams<Partial<IGlobalQuery>>({ projectId: detail.value });
+  function onSprintChange({ detail }: CustomEvent<ComboboxItem>) {
+    router.pushParams<Partial<IGlobalQuery>>({
+      sprintId: detail.value,
+    });
   }
 </script>
 
 <InputGroup label="Project:">
-  <Combobox items={projects} on:item={onProjectChange} />
+  <Combobox items={sprints} on:item={onSprintChange} />
 </InputGroup>

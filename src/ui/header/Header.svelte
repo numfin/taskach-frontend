@@ -2,6 +2,7 @@
   import TaskachLogo from "./TaskachLogo.svelte";
   import Userpanel from "./userpanel/UserPanel.svelte";
   import PickerProjects from "./pickers/PickerProjects.svelte";
+  import PickerSprints from "./pickers/PickerSprints.svelte";
 </script>
 
 <style lang="scss">
@@ -34,7 +35,7 @@
     <TaskachLogo />
     <div class="pickers">
       <PickerProjects />
-      <PickerProjects />
+      <PickerSprints />
     </div>
   </div>
   <Userpanel />

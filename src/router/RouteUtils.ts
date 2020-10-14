@@ -14,9 +14,6 @@ export function pathToUrl(pageUrl: string, query: string): URL {
  */
 export function formatQuery(params?: Page<any>["query"]): string {
   const search = new URLSearchParams(params);
-  for (const [k] of search.entries()) {
-    search.delete(k);
-  }
   search.sort();
   return search.toString();
 }

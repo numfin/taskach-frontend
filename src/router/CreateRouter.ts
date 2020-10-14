@@ -79,13 +79,21 @@ export class Router {
     }
   }
 
+  public pushParams<Params = Record<string, string>>(query: Params) {
+    const { page, state } = this._current;
+    const newState = { ...state, ...query };
+    const pathNext = pathToUrl(page.path, formatQuery(newState));
+    history.replaceState(newState, "", pathNext.href);
+    this.setCurrentPage(page, newState);
+  }
+
   /** Only change state of current history record */
   public replace<P extends Page<StringRecord>>(
     page: P,
     query: P["query"] = {}
   ) {
     const pathNext = pathToUrl(page.path, formatQuery(query));
-    history.pushState(query, "", pathNext.href);
+    history.replaceState(query, "", pathNext.href);
     this.setCurrentPage(page, query);
   }
 }
