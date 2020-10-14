@@ -9,10 +9,26 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   :global(:root) {
     --font-family: "Overpass", sans-serif;
     --padding-layout-hz: 44px;
+
+    :global(.scrollable) {
+      &::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background-color: var(--color-interactive-bg-active);
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--color-interactive-bg-normal);
+        outline: 1px solid --color-interactive-bg-active;
+      }
+    }
   }
   :global(:root.dark) {
     --color-bg-main: #2d3035;

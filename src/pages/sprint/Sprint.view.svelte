@@ -1,20 +1,12 @@
 <script lang="ts">
-  import { RootPage } from "../Root.page";
-
   import MainLayout from "/src/layout/MainLayout.svelte";
-  import Link from "/src/router/Link.svelte";
+  import type { IStory, ITaskTypeShort } from "/src/ui/task";
+  import Stories from "/src/ui/task/Stories.svelte";
+
+  let stories: IStory[] = [];
+  let taskTypes: ITaskTypeShort[] = [];
 </script>
 
-<style lang="scss">
-  div {
-    color: white;
-  }
-</style>
-
 <MainLayout>
-  <div>
-    Go back to
-    <Link to={(to) => to(RootPage, { projectId: '' })}>/root</Link>
-    :)
-  </div>
+  <Stories {stories} {taskTypes} />
 </MainLayout>

@@ -9,6 +9,10 @@
   },
   "devDependencies": {
     "@tsconfig/svelte": "^1.0.10",
+    "@types/faker": "^5.1.2",
+    "@types/lodash": "^4.14.162",
+    "faker": "^5.1.0",
+    "lodash": "^4.17.20",
     "sass": "^1.26.10",
     "svelte": "^3.24.1",
     "svelte-preprocess": "^4.1.1",

@@ -5,4 +5,12 @@ export const TaskExamples = [
     name: "Task",
     component: () => import("./Task.examples.svelte"),
   }),
+  createExample({
+    name: "Task process",
+    component: () => import("./TaskProcess.examples.svelte"),
+  }),
+  createExample({
+    name: "Stories",
+    component: () => import("./Stories.examples.svelte"),
+  }),
 ];
