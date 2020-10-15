@@ -3,16 +3,13 @@
   import Stories from "../Stories.svelte";
   import faker from "faker";
   import lodash from "lodash";
+  import { genItems } from "/examples/createExample";
 
-  function gen<T extends unknown>(fn: () => T, count = 10) {
-    return Array.from({ length: lodash.random(count, count + 3) }, fn);
-  }
-
-  const taskTypes: ITaskTypeShort[] = gen(
+  const taskTypes: ITaskTypeShort[] = genItems(
     () => ({
       id: faker.random.uuid(),
       name: faker.name.firstName(),
-      processes: gen(
+      processes: genItems(
         () => ({ id: faker.random.uuid(), name: faker.name.lastName() }),
         3
       ),
@@ -20,11 +17,11 @@
     2
   );
 
-  const stories: IStory[] = gen(
+  const stories: IStory[] = genItems(
     () => ({
       id: faker.random.uuid(),
       name: faker.name.jobTitle(),
-      tasks: gen(() => {
+      tasks: genItems(() => {
         const taskType = lodash.sample(taskTypes);
         const process = lodash.sample(taskType?.processes);
 

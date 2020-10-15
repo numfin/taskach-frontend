@@ -1,16 +1,18 @@
 <script lang="ts">
-  import { default as Task } from "../Task.svelte";
+  import faker from "faker";
+  import Task from "../Task.svelte";
   let items = [
     {
-      title: "Title 1",
-      description: "I need smt that i don't know but it supposed to be cool",
-    },
-    {
-      title: "Title 2",
-      description:
-        "I need something. Something i don't know yes. But it's going to be very cool. I hope... Or maybe not.",
+      title: faker.name.firstName(),
+      description: faker.lorem.sentences(2),
     },
     undefined,
+    {
+      description: faker.lorem.sentences(2),
+    },
+    {
+      title: faker.name.firstName(),
+    },
   ];
 </script>
 
