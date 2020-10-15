@@ -6,6 +6,8 @@
   export let stories: IStory[] = [];
   export let taskTypes: ITaskTypeShort[] = [];
 
+  const visibleStories: Record<string, boolean> = {};
+
   function filterTasksByProcess(
     story: IStory,
     taskType: ITaskTypeShort,
@@ -14,6 +16,10 @@
     return story.tasks.filter(({ taskTypeId, processId }) => {
       return taskTypeId === taskType.id && processId === process.id;
     });
+  }
+
+  function toggleStory(story: IStory) {
+    visibleStories[story.id] = !visibleStories[story.id];
   }
 </script>
 
@@ -50,6 +56,10 @@
     border: 1px solid var(--color-border-main);
     cursor: pointer;
     margin-right: 10px;
+
+    &.visible {
+      transform: rotate(180deg);
+    }
 
     &:hover {
       background-color: var(--color-interactive-bg-active);
@@ -88,23 +98,28 @@
 {#each stories as story}
   <div class="story">
     <div class="story-header">
-      <div class="story-toggle">
+      <div
+        class="story-toggle"
+        on:click={() => toggleStory(story)}
+        class:visible={visibleStories[story.id]}>
         <ArrowDown />
       </div>
       <div class="story-name">
         <div class="story-name-content">{story.name}</div>
       </div>
     </div>
-    {#each taskTypes as taskType}
-      <div class="task-type scrollable">
-        {#each taskType.processes as process}
-          <div class="process">
-            <TaskTypeStep
-              name={process.name}
-              tasks={filterTasksByProcess(story, taskType, process)} />
-          </div>
-        {/each}
-      </div>
-    {/each}
+    {#if visibleStories[story.id]}
+      {#each taskTypes as taskType}
+        <div class="task-type scrollable">
+          {#each taskType.processes as process}
+            <div class="process">
+              <TaskTypeStep
+                name={process.name}
+                tasks={filterTasksByProcess(story, taskType, process)} />
+            </div>
+          {/each}
+        </div>
+      {/each}
+    {/if}
   </div>
 {/each}

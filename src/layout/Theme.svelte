@@ -16,17 +16,19 @@
 
     :global(.scrollable) {
       &::-webkit-scrollbar {
-        width: 8px;
-        height: 8px;
+        width: 5px;
+        height: 5px;
       }
 
       &::-webkit-scrollbar-track {
+        border-radius: 3px;
         background-color: var(--color-interactive-bg-active);
       }
 
       &::-webkit-scrollbar-thumb {
         background-color: var(--color-interactive-bg-normal);
         outline: 1px solid --color-interactive-bg-active;
+        border-radius: 3px;
       }
     }
   }

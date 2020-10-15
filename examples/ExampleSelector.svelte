@@ -44,7 +44,7 @@
     background: var(--color-bg-main);
   }
   .examples-viewer {
-    height: 100%;
+    height: 100vh;
     overflow: auto;
     padding: 20px;
     box-sizing: border-box;
