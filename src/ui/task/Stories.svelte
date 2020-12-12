@@ -6,7 +6,37 @@
   export let stories: IStory[] = [];
   export let taskTypes: ITaskTypeShort[] = [];
 
-  const visibleStories: Record<string, boolean> = {};
+  const pressed = {
+    container: null as HTMLDivElement | null,
+    start: { x: 0 },
+    status: false,
+  };
+
+  const hiddenStories: Record<string, boolean> = {};
+
+  function initDragging(this: HTMLDivElement, event: PointerEvent) {
+    if (event.buttons !== 4) {
+      return;
+    }
+    pressed.start.x = event.pageX + this.scrollLeft;
+    pressed.container = this;
+    pressed.status = true;
+
+    window.addEventListener("pointermove", moveContainer);
+    window.addEventListener("pointerup", finishDragging);
+  }
+  function moveContainer(event: PointerEvent) {
+    pressed.container?.scroll({
+      left: pressed.start.x - event.pageX,
+    });
+  }
+  function finishDragging() {
+    pressed.container = null;
+    pressed.start.x = 0;
+    pressed.status = false;
+    window.removeEventListener("pointermove", moveContainer);
+    window.removeEventListener("pointerup", finishDragging);
+  }
 
   function filterTasksByProcess(
     story: IStory,
@@ -19,7 +49,7 @@
   }
 
   function toggleStory(story: IStory) {
-    visibleStories[story.id] = !visibleStories[story.id];
+    hiddenStories[story.id] = !hiddenStories[story.id];
   }
 </script>
 
@@ -29,9 +59,15 @@
   }
   .task-type {
     display: flex;
+    width: 100%;
+    overflow-x: auto;
 
     & + & {
       margin-top: 10px;
+    }
+
+    &.pressed {
+      pointer-events: none;
     }
   }
   .process {
@@ -39,6 +75,7 @@
     width: 340px;
     max-width: 340px;
     min-width: 340px;
+    scroll-snap-align: start;
   }
 
   .story-header {
@@ -87,12 +124,6 @@
     display: inline-block;
     padding-right: 10px;
   }
-
-  .task-type {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
 </style>
 
 {#each stories as story}
@@ -101,16 +132,19 @@
       <div
         class="story-toggle"
         on:click={() => toggleStory(story)}
-        class:visible={visibleStories[story.id]}>
+        class:visible={!hiddenStories[story.id]}>
         <ArrowDown />
       </div>
       <div class="story-name">
         <div class="story-name-content">{story.name}</div>
       </div>
     </div>
-    {#if visibleStories[story.id]}
+    {#if !hiddenStories[story.id]}
       {#each taskTypes as taskType}
-        <div class="task-type scrollable">
+        <div
+          on:pointerdown={initDragging}
+          class="task-type scrollable"
+          class:pressed={pressed.status}>
           {#each taskType.processes as process}
             <div class="process">
               <TaskTypeStep

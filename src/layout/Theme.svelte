@@ -18,6 +18,7 @@
       &::-webkit-scrollbar {
         width: 5px;
         height: 5px;
+        -webkit-overflow-scrolling: touch;
       }
 
       &::-webkit-scrollbar-track {
