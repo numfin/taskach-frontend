@@ -142,7 +142,7 @@
     {#if !hiddenStories[story.id]}
       {#each taskTypes as taskType}
         <div
-          on:pointerdown={initDragging}
+          on:pointerdown|preventDefault={initDragging}
           class="task-type scrollable"
           class:pressed={pressed.status}>
           {#each taskType.processes as process}
