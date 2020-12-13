@@ -1,4 +1,9 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+
+  import { profile } from "/src/modules/profile";
+  $: user = $profile.user;
+  $: username = `${user?.first_name} ${user?.last_name}`;
 </script>
 
 <style>
@@ -12,13 +17,13 @@
     font: var(--text-normal);
     margin-bottom: -4px;
   }
-  .user-surname {
+  .user-email {
     color: var(--color-text-secondary);
     font: var(--text-small);
     margin-bottom: -2px;
   }
   .user-name,
-  .user-surname {
+  .user-email {
     text-align: right;
   }
   .user-avatar {
@@ -33,8 +38,8 @@
 
 <div class="userpanel">
   <div class="user-data">
-    <div class="user-name">Aleksandr Paramonov</div>
-    <div class="user-surname">numfin@yandex.ru</div>
+    <div class="user-name">{username}</div>
+    <div class="user-email">{$profile.user?.email}</div>
   </div>
   <div class="user-avatar" />
 </div>

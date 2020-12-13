@@ -1,7 +1,7 @@
 <script lang="ts">
   import type { Router } from "./CreateRouter";
   export let router: Router;
-  const { current } = router;
+  const current = router.init();
 </script>
 
 <svelte:component this={$current.view} />

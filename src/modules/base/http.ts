@@ -1,4 +1,4 @@
-import { handlePromise, Result } from "./base";
+import { handlePromise, Result } from "./result";
 
 export class HttpError {
   public name = "HttpError";
@@ -20,7 +20,6 @@ export function makeRequest<
   ) => FinalError
 ): { abort: () => void; request: Result<FinalOutput, FinalError> } {
   const abortController = new AbortController();
-  console.log(options.data);
   const operation = fetch(url, {
     cache: "no-cache",
     headers: new Headers(options.headers),

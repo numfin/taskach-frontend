@@ -31,8 +31,12 @@ export class Router {
 
   constructor(private pages: Page<any>[]) {
     this.initRoutes(pages);
+  }
+
+  public init() {
     window.addEventListener("popstate", () => this.setActiveView());
     this.setActiveView();
+    return this.current;
   }
 
   private async setCurrentPage<P extends Page<any>>(
@@ -40,7 +44,6 @@ export class Router {
     state?: P["query"]
   ) {
     const view = (await page.component()).default;
-
     this._current = { state: state ?? {}, page, view };
     this.setCurrent(this._current);
   }

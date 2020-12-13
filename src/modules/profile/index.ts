@@ -1,7 +1,8 @@
-import { writable } from "svelte/store";
-import { loginMutation } from "./profile.service";
+import { createProfileStore } from "./profile.store";
 
-export interface IUser {
+export const profile = createProfileStore();
+
+export interface Profile {
   exp: number;
   id: string;
   email: string;
@@ -10,15 +11,7 @@ export interface IUser {
   phone: string;
 }
 
-function createProfileStore() {
-  const { set, subscribe } = writable<IUser | null>(null);
-  return {
-    subscribe,
-    async login(email: string, password: string) {
-      const request = await loginMutation({ email, password }).request;
-      if (request.ok) {
-      }
-    },
-  };
+export interface ProfileStore {
+  loading: boolean;
+  user: Profile | null;
 }
-export const profile = createProfileStore();

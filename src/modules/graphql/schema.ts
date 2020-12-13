@@ -1,9 +1,9 @@
-import { gqlRequest } from ".";
 import { concatArgs, concatFields } from "./utils";
 
 export class GraphQLResponse<Data> {
-  constructor(public data: unknown) {}
+  constructor(public data: Data) {}
 }
+
 export class GraphQLError {
   public name = "GraphQLError";
   constructor(public message: string, public panic: boolean) {}
@@ -31,7 +31,11 @@ export function createSchema(options: {
   args: GqlArgument[];
   fields: GqlFields;
 }) {
-  return `${options.type} { ${options.service} { ${options.fn}(${concatArgs(
-    options.args
-  )}) ${concatFields(options.fields)} } }`;
+  return {
+    query: `${options.type} { ${options.service} { ${options.fn}(${concatArgs(
+      options.args
+    )}) ${concatFields(options.fields)} } }`,
+    service: options.service,
+    fn: options.fn,
+  };
 }
