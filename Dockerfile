@@ -1,4 +1,3 @@
-ARG API_URL
 
 FROM node:alpine as build
 
@@ -8,7 +7,6 @@ COPY package*.json ./
 RUN npm ci
 
 COPY . .
-ENV API_URL=${API_URL}
 RUN npm run build
 
 FROM nginx:alpine as deploy

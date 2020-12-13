@@ -1,4 +1,4 @@
-import svelte from "vite-plugin-svelte";
+import { svelte } from "vite-plugin-svelte";
 import { sveltePreprocess } from "svelte-preprocess/dist/autoProcess";
 import { resolve } from "path";
 
