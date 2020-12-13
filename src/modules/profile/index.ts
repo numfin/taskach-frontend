@@ -1,4 +1,5 @@
 import { writable } from "svelte/store";
+import { loginMutation } from "./profile.service";
 
 export interface IUser {
   exp: number;
@@ -13,9 +14,11 @@ function createProfileStore() {
   const { set, subscribe } = writable<IUser | null>(null);
   return {
     subscribe,
-    login,
+    async login(email: string, password: string) {
+      const request = await loginMutation({ email, password }).request;
+      if (request.ok) {
+      }
+    },
   };
 }
 export const profile = createProfileStore();
-
-function login(email: String, password: String) {}
