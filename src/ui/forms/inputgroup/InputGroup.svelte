@@ -13,8 +13,9 @@
       grid-template-columns: auto;
       grid-template-rows: auto auto;
       gap: 5px;
-      & + & {
-        margin-top: 10px;
+      margin-top: 10px;
+      &:first-child {
+        margin-top: 0;
       }
     }
   }
