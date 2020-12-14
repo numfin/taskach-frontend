@@ -65,6 +65,15 @@
   :global(button) {
     padding: 0;
   }
+  :global(h1) {
+    font: var(--header-level-1);
+  }
+  :global(h2) {
+    font: var(--header-level-2);
+  }
+  :global(h3) {
+    font: var(--header-level-3);
+  }
 </style>
 
 <svelte:head>
