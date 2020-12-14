@@ -1,8 +1,12 @@
 import { handlePromise, Result } from "./result";
 
-export class HttpError {
+export class HttpError<ErrorBody = unknown> {
   public name = "HttpError";
-  constructor(public message: string, public panic: boolean) {}
+  constructor(
+    public message: string,
+    public panic: boolean,
+    public body = {} as ErrorBody
+  ) {}
 }
 
 export function makeRequest<
@@ -40,6 +44,7 @@ export function makeRequest<
       if (err.name === "AbortError") {
         throw new HttpError("Request aborted", false);
       }
+      console.log(err);
       throw new HttpError(err.message, true);
     });
   return {

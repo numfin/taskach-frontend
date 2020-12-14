@@ -44,6 +44,7 @@
     --color-text-primary: #f5f5f5;
     --color-text-secondary: #b6b6b6;
     --color-text-passive: #656f81;
+    --color-text-error: #e7364d;
 
     --color-border-main: #1b1d21;
     --color-border-secondary: #3f3f3f;

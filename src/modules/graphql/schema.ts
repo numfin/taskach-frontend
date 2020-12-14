@@ -4,9 +4,13 @@ export class GraphQLResponse<Data> {
   constructor(public data: Data) {}
 }
 
-export class GraphQLError {
+export class GraphQLError<GqlErrorBody = unknown> {
   public name = "GraphQLError";
-  constructor(public message: string, public panic: boolean) {}
+  constructor(
+    public message: string,
+    public panic: boolean,
+    public extensions: GqlErrorBody
+  ) {}
 }
 
 export enum SERVICE {

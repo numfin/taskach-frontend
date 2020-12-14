@@ -14,4 +14,5 @@ export interface Profile {
 export interface ProfileStore {
   loading: boolean;
   user: Profile | null;
+  errors: string[];
 }

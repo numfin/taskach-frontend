@@ -4,33 +4,33 @@ import type { Profile, ProfileStore } from ".";
 import jwtDecode from "jwt-decode";
 
 export function createProfileStore() {
-  const { update, subscribe } = writable<ProfileStore>({
+  const { update, subscribe, set } = writable<ProfileStore>({
     loading: false,
     user: restoreUser(),
+    errors: [],
   });
 
   return {
     subscribe,
     async login(form: { email: string; password: string }) {
-      update((store) => {
-        store.loading = true;
-        return store;
-      });
+      update((store) => (store.loading = true) && store);
 
       const request = await loginMutation(form).request;
       if (request.ok) {
-        update((store) => {
-          const { jwt } = request.result.data;
-          store.user = jwtDecode<Profile>(jwt);
-          saveUser(jwt);
-          return store;
+        const { jwt } = request.result.data;
+        set({
+          errors: [],
+          loading: false,
+          user: jwtDecode<Profile>(jwt),
+        });
+        saveUser(jwt);
+      } else {
+        set({
+          errors: [request.error.message],
+          loading: false,
+          user: null,
         });
       }
-
-      update((store) => {
-        store.loading = false;
-        return store;
-      });
     },
   };
 }

@@ -1,5 +1,6 @@
 <script lang="ts">
   import Btn from "../../buttons/Btn.svelte";
+  import FormErrors from "../errors/FormErrors.svelte";
   import InputGroup from "../inputgroup/InputGroup.svelte";
   import InputText from "../InputText/InputText.svelte";
   import AuthLayout from "/src/layout/AuthLayout.svelte";
@@ -27,7 +28,7 @@
     font-size: 48px;
   }
   .actions {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 </style>
 
@@ -47,6 +48,8 @@
           placeholder="••••••••"
           bind:value={form.password} />
       </InputGroup>
+
+      <FormErrors errors={$profile.errors} />
 
       <div class="actions">
         <Btn type="submit" loading={$profile.loading}>Login</Btn>
