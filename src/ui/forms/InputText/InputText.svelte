@@ -4,6 +4,8 @@
   export let type: InputType = "text";
   export let placeholder = "";
   export let disabled = false;
+
+  $: filled = value.length > 0;
 </script>
 
 <style lang="scss">
@@ -22,9 +24,12 @@
     outline: none;
     padding: 0 12px;
 
+    &.filled,
     &:focus {
       color: var(--color-text-primary);
       background-color: var(--color-interactive-bg-active);
+    }
+    &:focus {
       border: 1px solid var(--color-border-accent);
     }
   }
@@ -36,4 +41,5 @@
   {value}
   {placeholder}
   {disabled}
+  class:filled
   on:input={(event) => (value = event.currentTarget.value)} />
