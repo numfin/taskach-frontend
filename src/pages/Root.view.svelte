@@ -1,11 +1,13 @@
 <script lang="ts">
-  import MainLayout from "../layout/MainLayout.svelte";
+  import Theme from "../layout/Theme.svelte";
   import Link from "../router/Link.svelte";
   import { SprintPage } from "./sprint/Sprint.page";
 </script>
 
-<MainLayout>
+<div>
   Check
   <Link to={(to) => to(SprintPage, {})}>/sprint</Link>
   :)
-</MainLayout>
+</div>
+
+<Theme />
