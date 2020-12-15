@@ -1,6 +1,6 @@
 import { handlePromise, Result } from "./result";
 
-export class HttpError<ErrorBody = unknown> {
+export class IHttpError<ErrorBody = unknown> {
   public name = "HttpError";
   constructor(
     public message: string,
@@ -9,8 +9,9 @@ export class HttpError<ErrorBody = unknown> {
   ) {}
 }
 
-export function makeRequest<
+export function httpRequest<
   Output,
+  HttpError extends IHttpError,
   FinalOutput = Output,
   FinalError = HttpError
 >(
@@ -38,14 +39,14 @@ export function makeRequest<
         const type = response.headers.get("content-type");
         return type === "application/json" ? response.json() : response.text();
       }
-      throw new HttpError(response.statusText, true);
+      throw new IHttpError(response.statusText, true);
     })
     .catch((err) => {
       if (err.name === "AbortError") {
-        throw new HttpError("Request aborted", false);
+        throw new IHttpError("Request aborted", false);
       }
       console.log(err);
-      throw new HttpError(err.message, true);
+      throw new IHttpError(err.message, true);
     });
   return {
     request: handlePromise<Output, HttpError, FinalOutput, FinalError>(

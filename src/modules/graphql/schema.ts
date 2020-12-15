@@ -4,12 +4,12 @@ export class GraphQLResponse<Data> {
   constructor(public data: Data) {}
 }
 
-export class GraphQLError<GqlErrorBody = unknown> {
+export class GraphQLError<GqlErrorBody extends unknown> {
   public name = "GraphQLError";
   constructor(
     public message: string,
     public panic: boolean,
-    public extensions: GqlErrorBody
+    public extensions?: GqlErrorBody
   ) {}
 }
 

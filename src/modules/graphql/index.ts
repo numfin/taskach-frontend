@@ -1,5 +1,5 @@
 import { API_HOST } from "/src/env";
-import { HttpError, makeRequest } from "/src/modules/base/http";
+import { IHttpError, httpRequest } from "/src/modules/base/http";
 import { GraphQLError, GraphQLResponse, SERVICE } from "./schema";
 import type { Result } from "/src/modules/base/result";
 
@@ -11,22 +11,22 @@ type GqlResponse<S extends SERVICE, Data, ErrorBody> = {
   };
   errors?: {
     message: string;
-    extensions: ErrorBody;
+    extensions?: ErrorBody;
   }[];
 };
-
-export function gqlRequest<Output, GqlErrorBody = unknown>(schema: {
+export function gqlRequest<Output, GqlErrorBody extends unknown>(schema: {
   query: string;
   service: SERVICE;
   fn: string;
 }): {
-  request: Result<GraphQLResponse<Output>, GraphQLError>;
+  request: Result<GraphQLResponse<Output>, GraphQLError<GqlErrorBody>>;
   abort: () => void;
 } {
-  const { abort, request } = makeRequest<
+  const { abort, request } = httpRequest<
     GqlResponse<SERVICE, Output, GqlErrorBody>,
+    IHttpError<GqlErrorBody>,
     GraphQLResponse<Output>,
-    GraphQLError
+    GraphQLError<GqlErrorBody>
   >(
     API_HOST,
     {
@@ -41,7 +41,7 @@ export function gqlRequest<Output, GqlErrorBody = unknown>(schema: {
     },
     (v) => {
       if (v.errors && v.errors.length > 0) {
-        throw new HttpError<GqlErrorBody>(
+        throw new IHttpError<GqlErrorBody>(
           v.errors[0].message,
           true,
           v.errors[0].extensions
@@ -49,7 +49,7 @@ export function gqlRequest<Output, GqlErrorBody = unknown>(schema: {
       }
       return new GraphQLResponse(v.data[schema.service][schema.fn]);
     },
-    (err) => new GraphQLError(err.message, err.panic, err.body)
+    (err) => new GraphQLError<GqlErrorBody>(err.message, err.panic, err.body)
   );
   return {
     abort,
