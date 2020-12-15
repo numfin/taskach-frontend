@@ -1,6 +1,7 @@
 <script lang="ts">
   import { router } from "/src/pages";
   import type { Page } from "./CreatePage";
+  import { onMount } from "svelte";
 
   interface Place<P extends Page<any>> {
     page: P;
@@ -21,6 +22,8 @@
 
   $: query = new URLSearchParams(place.params).toString();
   $: href = `${place.page.path}${query ? `?${query}` : ""}`;
+
+  onMount(() => place.page.component());
 </script>
 
 <a {href} on:click|preventDefault={goToRoute}>
