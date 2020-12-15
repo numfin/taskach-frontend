@@ -14,7 +14,7 @@
     phone: "",
   };
 
-  let registerSuccess = true;
+  let registerSuccess = false;
 
   async function submit() {
     if (mode === MODE.login) {
