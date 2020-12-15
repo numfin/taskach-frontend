@@ -10,6 +10,24 @@
 </script>
 
 <style lang="scss">
+  @font-face {
+    font-family: "Overpass";
+    font-style: normal;
+    font-weight: 400;
+    src: local(""),
+      url("/fonts/overpass-v5-latin-regular.woff2") format("woff2"),
+      /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url("/fonts/overpass-v5-latin-regular.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+  @font-face {
+    font-family: "Overpass";
+    font-style: normal;
+    font-weight: 700;
+    src: local(""), url("../fonts/overpass-v5-latin-700.woff2") format("woff2"),
+      /* Chrome 26+, Opera 23+, Firefox 39+ */
+        url("../fonts/overpass-v5-latin-700.woff") format("woff"); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+  }
+
   :global(:root) {
     --font-family: "Overpass", sans-serif;
     --padding-layout-hz: 44px;
@@ -75,9 +93,3 @@
     font: var(--header-level-3);
   }
 </style>
-
-<svelte:head>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap"
-    rel="stylesheet" />
-</svelte:head>
