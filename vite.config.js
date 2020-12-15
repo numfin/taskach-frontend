@@ -7,6 +7,5 @@ export default {
   rollupDedupe: ["svelte"],
   alias: {
     "/src/": resolve(__dirname, "./src"),
-    "/fonts/": resolve(__dirname, "./public/fonts"),
   },
 };
