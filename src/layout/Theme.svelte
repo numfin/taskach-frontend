@@ -10,21 +10,6 @@
 </script>
 
 <style lang="scss">
-  @font-face {
-    font-family: "Overpass";
-    font-style: normal;
-    font-weight: 400;
-    src: url("/fonts/overpass-v5-latin-regular.woff2") format("woff2"),
-      url("/fonts/overpass-v5-latin-regular.woff") format("woff");
-  }
-  @font-face {
-    font-family: "Overpass";
-    font-style: normal;
-    font-weight: 700;
-    src: url("/fonts/overpass-v5-latin-700.woff2") format("woff2"),
-      url("/fonts/overpass-v5-latin-700.woff") format("woff");
-  }
-
   :global(:root) {
     --font-family: "Overpass", sans-serif;
     --padding-layout-hz: 44px;
