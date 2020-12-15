@@ -1,8 +1,6 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-
-  import { profile } from "/src/modules/profile";
-  $: user = $profile.user;
+  import { auth } from "/src/modules/auth";
+  $: user = $auth.user;
   $: username = `${user?.first_name} ${user?.last_name}`;
 </script>
 
@@ -39,7 +37,7 @@
 <div class="userpanel">
   <div class="user-data">
     <div class="user-name">{username}</div>
-    <div class="user-email">{$profile.user?.email}</div>
+    <div class="user-email">{$auth.user?.email}</div>
   </div>
   <div class="user-avatar" />
 </div>
