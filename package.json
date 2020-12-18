@@ -2,7 +2,7 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "scripts": {
-    "dev": "API_HOST=http://localhost:8081/graphql vite",
+    "dev": "vite",
     "dev:docs": "vite --config vite-examples.config.js",
     "build": "tsc --noEmit && vite build",
     "build:docs": "vite build --config vite-examples.config.js"
