@@ -1,18 +1,18 @@
 <script lang="ts">
   import { router } from "/src/pages";
-  import type { Page } from "./CreatePage";
+  import type { IQuery, Page } from "./CreatePage";
   import { onMount } from "svelte";
 
-  interface Place<P extends Page<any>> {
+  interface Place<P extends Page<IQuery>> {
     page: P;
-    params?: P["query"];
+    params: P["query"];
   }
 
-  function goto<P extends Page<any>>(page: P, params?: P["query"]): Place<P> {
+  function goto<P extends Page<IQuery>>(page: P, params: P["query"]): Place<P> {
     return { page, params };
   }
 
-  export let to: (gotoCb: typeof goto) => Place<Page<any>>;
+  export let to: (gotoCb: typeof goto) => Place<Page<IQuery>>;
   $: place = to(goto);
 
   function goToRoute() {
@@ -20,7 +20,7 @@
     router.push(page, params);
   }
 
-  $: query = new URLSearchParams(place.params).toString();
+  $: query = new URLSearchParams(place.params as IQuery).toString();
   $: href = `${place.page.path}${query ? `?${query}` : ""}`;
 
   onMount(() => place.page.component());

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Router from "/src/router/Router.svelte";
+  import Router from "/src/modules/router/Router.svelte";
   import { router } from "/src/pages";
   import { auth } from "./modules/auth";
   import AuthForm from "./ui/forms/auth/AuthForm.svelte";

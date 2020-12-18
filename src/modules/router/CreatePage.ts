@@ -1,19 +1,19 @@
-export interface Page<QueryParams extends Record<string, string>> {
+export type IQuery = Record<string, string>;
+
+export interface Page<QueryParams extends IQuery> {
   id: Symbol;
   parent?: Symbol;
   path: string;
-  query?: Partial<QueryParams>;
+  query: Partial<QueryParams>;
   component: () => Promise<typeof import("*.svelte")>;
   children?: Page<any>[];
 }
 
-export function createPage<
-  QueryParams extends Record<string, string>
->(options: {
+export function createPage<QueryParams extends IQuery>(options: {
   path: string;
   query?: QueryParams;
   component: () => Promise<typeof import("*.svelte")>;
-  children?: Page<Record<string, string>>[];
+  children?: Page<IQuery>[];
 }): Page<QueryParams> {
   const page = {
     id: Symbol(),
@@ -28,7 +28,7 @@ export function createPage<
   return page;
 }
 
-function attachParent(parent: Page<any>, children: Page<any>[]) {
+function attachParent(parent: Page<IQuery>, children: Page<IQuery>[]) {
   for (let child of children) {
     child.parent = parent.id;
     const parentPath = parent.path === "/" ? "" : parent.path;
@@ -39,26 +39,13 @@ function attachParent(parent: Page<any>, children: Page<any>[]) {
   }
 }
 
-export function pageStateFromUrl<P extends Page<any>>(page: P): P["query"] {
+export function pageStateFromQuery<Q extends IQuery>(query: Partial<Q>): Q {
   const { searchParams } = new URL(location.href);
-  const state: Record<string, string> = {};
-  for (const param of Object.keys(page?.query || {})) {
+  const state: IQuery = {};
+  for (const param of Object.keys(query || {})) {
     state[param] = searchParams.get(param) ?? "";
   }
-  return state;
-}
-
-export function normalizePageState(
-  page: Page<any>,
-  state: Record<string, string>
-) {
-  for (const param of Object.keys(page?.query || {})) {
-    const value = state[param];
-    if (value) {
-      state[param] = value;
-    }
-  }
-  return state;
+  return state as Q;
 }
 
 export function createEmptyPage() {

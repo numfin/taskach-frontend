@@ -1,6 +1,5 @@
 <script lang="ts">
   import { router } from "/src/pages";
-  import type { IGlobalQuery } from "/src/pages";
   import type { ComboboxItem } from "/src/ui/forms/combobox";
 
   import Combobox from "/src/ui/forms/combobox/Combobox.svelte";
@@ -12,10 +11,15 @@
   ];
 
   function onProjectChange({ detail }: CustomEvent<ComboboxItem>) {
-    router.pushParams<Partial<IGlobalQuery>>({ projectId: detail.value });
+    router.changeGlobalState({ projectId: detail.value });
   }
+
+  let { store } = router;
+  $: value = projects.find(({ value }) => {
+    return value === $store.globalState.projectId;
+  });
 </script>
 
 <InputGroup label="Project:">
-  <Combobox items={projects} on:item={onProjectChange} />
+  <Combobox items={projects} on:item={onProjectChange} bind:value />
 </InputGroup>

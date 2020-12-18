@@ -1,9 +1,4 @@
-import { Router } from "/src/router/CreateRouter";
+import { Router } from "../modules/router/CreateRouter";
 import { RootPage } from "./Root.page";
 
-export const router = new Router([RootPage]);
-
-export interface IGlobalQuery {
-  projectId: string;
-  sprintId: string;
-}
+export const router = new Router([RootPage], { projectId: "" });
