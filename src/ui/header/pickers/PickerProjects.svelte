@@ -21,5 +21,5 @@
 </script>
 
 <InputGroup label="Project:">
-  <Combobox items={projects} on:item={onProjectChange} bind:value />
+  <Combobox items={projects} on:item={onProjectChange} {value} />
 </InputGroup>

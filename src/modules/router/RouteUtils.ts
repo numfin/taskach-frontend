@@ -16,8 +16,13 @@ export function pathToUrl<P extends Page<IQuery>>(
  * convert `{c: "some", a:1}`
  * to `a=1&c=some`
  */
-export function formatQuery(params?: Page<IQuery>["query"]): string {
-  const search = new URLSearchParams(params as IQuery);
+export function formatQuery(params: Page<IQuery>["query"]): string {
+  const search = new URLSearchParams();
+  for (const [k, v] of Object.entries(params)) {
+    if (v) {
+      search.set(k, v);
+    }
+  }
   search.sort();
   return search.toString();
 }

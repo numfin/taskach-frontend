@@ -100,8 +100,8 @@ export class Router<GlobalQuery extends IQuery> {
     query: P["query"],
     globalState = this.globalState
   ) {
-    const newState = { ...globalState, ...query };
-    const oldState = { ...this.globalState, ...this.currentPage.state };
+    const newState = { ...query, ...globalState };
+    const oldState = { ...this.currentPage.state, ...this.globalState };
     if (page === this.currentPage.page) {
       const queryNext = formatQuery(newState);
       const queryLast = formatQuery(oldState);
@@ -128,8 +128,8 @@ export class Router<GlobalQuery extends IQuery> {
     query: P["query"],
     globalState = this.globalState
   ) {
-    const newState = { ...globalState, ...query };
-    const oldState = { ...this.globalState, ...this.currentPage.state };
+    const newState = { ...query, ...globalState };
+    const oldState = { ...this.currentPage.state, ...this.globalState };
     const queryNext = formatQuery(newState);
     const queryLast = formatQuery(oldState);
 
