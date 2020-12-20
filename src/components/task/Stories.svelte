@@ -1,7 +1,11 @@
 <script lang="ts">
-  import type { IProcessShort, IStory, ITaskTypeShort } from "/src/ui/task";
-  import TaskTypeStep from "../../ui/task/TaskProcess.svelte";
-  import ArrowDown from "/src/icons/ArrowDown.svelte";
+  import type {
+    IProcessShort,
+    IStory,
+    ITaskTypeShort,
+  } from "/src/components/task";
+  import TaskTypeStep from "/src/components/task/TaskProcess.svelte";
+  import ArrowDown from "/src/components/icons/ArrowDown.svelte";
 
   export let stories: IStory[] = [];
   export let taskTypes: ITaskTypeShort[] = [];

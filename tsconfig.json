@@ -1,7 +1,7 @@
 {
   "extends": "@tsconfig/svelte/tsconfig.json",
-  "include": ["src/**/*", "examples/**/*", "src/node_modules"],
-  "exclude": ["node_modules/*", "__sapper__/*", "public/*"],
+  "include": ["src/**/*", "examples/**/*"],
+  "exclude": ["node_modules/*", "public/*"],
   "compilerOptions": {
     "baseUrl": ".",
     "strict": true,
@@ -10,6 +10,7 @@
       "/examples/*": ["examples/*"]
     },
     "module": "esnext",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "types": ["svelte", "vite/dist/importMeta"]
   }
 }

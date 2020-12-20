@@ -1,8 +1,8 @@
 <script lang="ts">
   import Router from "/src/modules/router/Router.svelte";
   import { router } from "/src/pages";
-  import { auth } from "./modules/auth";
-  import AuthForm from "./ui/forms/auth/AuthForm.svelte";
+  import { auth } from "/src/modules/auth";
+  import AuthForm from "/src/components/ui/forms/auth/AuthForm.svelte";
 </script>
 
 {#if $auth.user}

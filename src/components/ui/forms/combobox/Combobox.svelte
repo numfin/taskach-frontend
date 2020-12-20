@@ -2,7 +2,7 @@
   import { createEventDispatcher } from "svelte";
 
   import type { ComboboxItem } from ".";
-  import ArrowDown from "/src/icons/ArrowDown.svelte";
+  import ArrowDown from "/src/components/icons/ArrowDown.svelte";
 
   export let opened = false;
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Btn from "../../buttons/Btn.svelte";
+  import Btn from "/src/components/ui/buttons/Btn.svelte";
   import FormErrors from "../errors/FormErrors.svelte";
   import InputGroup from "../inputgroup/InputGroup.svelte";
   import InputText from "../InputText/InputText.svelte";

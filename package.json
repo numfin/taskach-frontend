@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
-    "dev:docs": "vite --config vite-examples.config.js",
+    "dev:docs": "cp -r public examples/public && vite --config vite-examples.config.js",
     "build": "tsc --noEmit && vite build",
     "build:docs": "vite build --config vite-examples.config.js"
   },

@@ -3,7 +3,7 @@ import { sveltePreprocess } from "svelte-preprocess/dist/autoProcess";
 import { resolve } from "path";
 
 export default {
-  plugins: [svelte({ preprocess: sveltePreprocess() })],
+  plugins: [svelte({ preprocess: sveltePreprocess({ typescript: true }) })],
   rollupDedupe: ["svelte"],
   alias: {
     "/src/": resolve(__dirname, "./src"),
