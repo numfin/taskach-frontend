@@ -15,7 +15,7 @@ export class GraphQLError<GqlErrorBody extends unknown> {
 
 export enum SERVICE {
   users = "users",
-  projecs = "projects",
+  projects = "projects",
 }
 
 export enum REQ_TYPE {

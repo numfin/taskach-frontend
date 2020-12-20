@@ -45,7 +45,6 @@ export function httpRequest<
       if (err.name === "AbortError") {
         throw new IHttpError("Request aborted", false);
       }
-      console.log(err);
       throw new IHttpError(err.message, true);
     });
   return {
