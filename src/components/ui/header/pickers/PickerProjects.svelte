@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { router } from "/src/pages";
+  import { router } from "../../../../router";
   import type { ComboboxItem } from "/src/components/ui/forms/combobox";
 
   import Combobox from "/src/components/ui/forms/combobox/Combobox.svelte";
   import InputGroup from "/src/components/ui/forms/inputgroup/InputGroup.svelte";
 
   const projects: ComboboxItem[] = [
-    { title: "Project 1", value: "1" },
+    { title: "Project 1", value: "ckjfwt9eg0000znjeodixic9l" },
     { title: "Project 2", value: "2" },
   ];
 

@@ -1,9 +1,7 @@
-import type { GqlArgument, GqlFields } from "./schema";
+import type { SchemaArgument, GqlFieldSelect, Model } from "./schema";
 
-export function concatArgs(args: GqlArgument[]) {
-  return args
-    .map(([name, value]) => `${name}: ${objectToString(value)}`)
-    .join(", ");
+export function concatArgs(args: SchemaArgument[]) {
+  return args.map((arg) => arg.toString()).join(", ");
 }
 
 export function objectToString(value: unknown): string {
@@ -20,12 +18,17 @@ export function objectToString(value: unknown): string {
   }
 }
 
-export function concatFields(fields: GqlFields): string {
+export function concatFields<T extends GqlFieldSelect<Model<{}>>>(
+  fields?: T
+): string {
+  if (!fields) {
+    return ``;
+  }
   return `{ ${Object.entries(fields)
     .map(([name, v]) => {
       return v === true
         ? name
-        : typeof v === "object"
+        : typeof v === "object" && v !== null
         ? `${name} ${concatFields(v)}`
         : "";
     })

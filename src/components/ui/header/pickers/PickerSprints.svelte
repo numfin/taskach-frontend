@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { router } from "/src/pages";
-  import { SprintPage } from "/src/pages/sprint/Sprint.page";
+  import { router } from "../../../../router";
+  import { SprintPage } from "../../../../domains/sprint/Sprint.page";
   import type { ComboboxItem } from "/src/components//ui/forms/combobox";
 
   import Combobox from "/src/components/ui/forms/combobox/Combobox.svelte";

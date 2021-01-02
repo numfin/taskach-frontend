@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { router } from "/src/pages";
+  import { router } from "../../router";
   import type { IQuery, Page } from "./CreatePage";
   import { onMount } from "svelte";
 

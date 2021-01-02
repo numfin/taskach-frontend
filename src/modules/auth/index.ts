@@ -18,13 +18,16 @@ export interface ProfileStore {
   registeredUser: IUser | null;
 }
 
-export interface IUser {
+export type IUser = {
   id: string;
   firstName: string;
   lastName: string;
   email: string;
   phone: string;
-  active: string;
   createdAt: string;
   updatedAt: string;
-}
+};
+
+export type AuthResponse = {
+  jwt: string;
+};

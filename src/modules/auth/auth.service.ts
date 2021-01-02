@@ -1,6 +1,8 @@
-import type { IUser } from ".";
+import type { AuthResponse, IUser } from ".";
 import { gqlRequest } from "../graphql";
-import { createSchema, REQ_TYPE, SERVICE } from "../graphql/schema";
+import { SchemaArgument } from "../graphql/schema";
+import { REQ_TYPE } from "../graphql/REQ_TYPE";
+import { SERVICE } from "../graphql/SERVICE";
 
 export interface AuthenticationData {
   email: string;
@@ -12,20 +14,15 @@ export interface NewUserInput extends AuthenticationData {
   phone: string;
 }
 
-export function loginMutation<T extends { jwt: string }>({
-  email,
-  password,
-}: AuthenticationData) {
-  const schema = createSchema({
-    type: REQ_TYPE.mutation,
-    service: SERVICE.users,
-    fn: "login",
-    args: [["auth", { email, password }]],
-    fields: {
-      jwt: true,
+function login<T extends AuthResponse>() {
+  return gqlRequest<T, unknown, AuthenticationData>(
+    {
+      type: REQ_TYPE.mutation,
+      service: SERVICE.users,
+      fn: "login",
     },
-  });
-  return gqlRequest<T, unknown>(schema);
+    ({ email, password }) => [new SchemaArgument("auth", { email, password })]
+  );
 }
 
 export interface RegisterErrors {
@@ -33,22 +30,18 @@ export interface RegisterErrors {
   password: string;
   phone: string;
 }
-export function registerMutation<T extends IUser>(args: NewUserInput) {
-  const schema = createSchema({
-    type: REQ_TYPE.mutation,
-    service: SERVICE.users,
-    fn: "register",
-    args: [["newUser", args]],
-    fields: {
-      id: true,
-      firstName: true,
-      lastName: true,
-      email: true,
-      phone: true,
-      active: true,
-      createdAt: true,
-      updatedAt: true,
+function register<T extends IUser>() {
+  return gqlRequest<T, RegisterErrors, NewUserInput>(
+    {
+      type: REQ_TYPE.mutation,
+      service: SERVICE.users,
+      fn: "register",
     },
-  });
-  return gqlRequest<T, RegisterErrors>(schema);
+    (user) => [new SchemaArgument("newUser", user)]
+  );
 }
+
+export const auth = {
+  login,
+  register,
+};

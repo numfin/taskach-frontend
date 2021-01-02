@@ -7,8 +7,9 @@
     "strict": true,
     "paths": {
       "/src/*": ["src/*"],
-      "/examples/*": ["examples/*"]
+      "/examples/*": ["examples/*"],
     },
+    "keyofStringsOnly": true,
     "module": "esnext",
     "moduleResolution": "node",
     "types": ["svelte", "vite/dist/importMeta"]

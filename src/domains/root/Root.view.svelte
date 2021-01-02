@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Theme from "../layout/Theme.svelte";
+  import Theme from "/src/layout/Theme.svelte";
   import Link from "/src/modules/router/Link.svelte";
-  import { SprintPage } from "./sprint/Sprint.page";
+  import { SprintPage } from "/src/domains/sprint/Sprint.page";
 </script>
 
 <div>

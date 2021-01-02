@@ -60,6 +60,10 @@
 <style lang="scss">
   .story {
     margin-top: 20px;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
   .task-type {
     display: flex;

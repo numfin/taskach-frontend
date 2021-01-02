@@ -1,4 +1,4 @@
-import { createPage } from "../../modules/router/CreatePage";
+import { createPage } from "/src/modules/router/CreatePage";
 
 export const SprintPage = createPage({
   path: "/sprint",

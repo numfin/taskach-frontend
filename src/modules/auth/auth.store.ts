@@ -1,7 +1,7 @@
 import jwtDecode from "jwt-decode";
 import { writable } from "svelte/store";
 
-import { loginMutation, registerMutation } from "./auth.service";
+import { auth } from "./auth.service";
 import type { AuthenticationData, NewUserInput } from "./auth.service";
 import type { Profile, ProfileStore } from ".";
 
@@ -18,7 +18,7 @@ export function createAuthStore() {
     async login(form: AuthenticationData) {
       update((store) => (store.loading = true) && store);
 
-      const request = await loginMutation(form).request;
+      const request = await auth.login()(form, { jwt: true }).request;
       if (request.ok) {
         const { jwt } = request.result.data;
         set({
@@ -40,7 +40,15 @@ export function createAuthStore() {
     async register(form: NewUserInput) {
       update((store) => (store.loading = true) && store);
 
-      const request = await registerMutation(form).request;
+      const request = await auth.register()(form, {
+        id: true,
+        email: true,
+        firstName: true,
+        lastName: true,
+        phone: true,
+        createdAt: true,
+        updatedAt: true,
+      }).request;
       if (request.ok) {
         set({
           loading: false,
