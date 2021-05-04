@@ -1,7 +1,7 @@
 import { defineComponent } from "vue";
 import { AppRouteRecord, RouterView } from "vue-router";
 
-import { MainLayout } from "./Main.layout";
+import { MainLayout } from "@/ui/layout/main/Main.layout";
 
 interface RouterViewSlotOptions {
   Component: () => JSX.Element;

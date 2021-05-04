@@ -13,6 +13,7 @@ module.exports = {
     "@vue/prettier",
     "@vue/prettier/@typescript-eslint",
   ],
+  plugins: ["unused-imports"],
   parserOptions: {
     ecmaVersion: 2020,
   },
@@ -33,6 +34,7 @@ module.exports = {
     ],
     "import/newline-after-import": ["warn", { count: 1 }],
     "@typescript-eslint/explicit-module-boundary-types": "off",
+    "unused-imports/no-unused-imports": "error",
   },
   settings: {
     "import/resolver": {

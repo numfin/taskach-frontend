@@ -1,5 +1,6 @@
 import { API_HOST } from "/src/env";
 import { IHttpError, httpRequest } from "/src/modules/base/http";
+
 import {
   createSchema,
   GqlFieldSelect,
@@ -11,6 +12,7 @@ import {
   SchemaArgument,
 } from "./schema";
 import type { SERVICE } from "./SERVICE";
+
 import type { Result } from "/src/modules/base/result";
 
 type GqlResponse<S extends SERVICE, Data, ErrorBody> = {
@@ -31,10 +33,10 @@ export function gqlRequest<
   Select = GqlFieldSelect<Output>
 >(
   action: SchemaAction,
-  createArgs: (input: Input) => SchemaArgument[]
+  createArgs: (input: Input) => SchemaArgument[],
 ): (
   args: Input,
-  select: Select
+  select: Select,
 ) => {
   request: Result<GraphQLResponse<Output>, GraphQLError<GqlErrorBody>>;
   abort: () => void;
@@ -68,12 +70,12 @@ export function gqlRequest<
           throw new IHttpError<GqlErrorBody>(
             v.errors[0].message,
             true,
-            v.errors[0].extensions
+            v.errors[0].extensions,
           );
         }
         return new GraphQLResponse(v.data[schema.service][schema.fn]);
       },
-      (err) => new GraphQLError<GqlErrorBody>(err.message, err.panic, err.body)
+      (err) => new GraphQLError<GqlErrorBody>(err.message, err.panic, err.body),
     );
     return {
       abort,

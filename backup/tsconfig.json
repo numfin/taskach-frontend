@@ -12,6 +12,7 @@
     "keyofStringsOnly": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "types": ["svelte", "vite/dist/importMeta"]
+    "types": ["svelte", "vite/dist/importMeta"],
+    "target": "esnext"
   }
 }

@@ -5,7 +5,7 @@ export class IHttpError<ErrorBody = unknown> {
   constructor(
     public message: string,
     public panic: boolean,
-    public body = {} as ErrorBody
+    public body = {} as ErrorBody,
   ) {}
 }
 
@@ -18,11 +18,11 @@ export function httpRequest<
   url: string,
   options: { headers: Record<string, string>; data: any },
   mapOk = (((data: Output) => data) as unknown) as (
-    data: Output
+    data: Output,
   ) => FinalOutput,
   mapErr = (((err: HttpError) => err) as unknown) as (
-    err: HttpError
-  ) => FinalError
+    err: HttpError,
+  ) => FinalError,
 ): { abort: () => void; request: Result<FinalOutput, FinalError> } {
   const abortController = new AbortController();
   const operation = fetch(url, {
@@ -51,7 +51,7 @@ export function httpRequest<
     request: handlePromise<Output, HttpError, FinalOutput, FinalError>(
       operation,
       mapOk,
-      mapErr
+      mapErr,
     ),
     abort: abortController.abort,
   };

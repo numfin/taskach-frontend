@@ -35,7 +35,7 @@
   }
   :global(:root.dark) {
     --color-bg-main: #2d3035;
-    --color-bg-accent: #e26777;
+    --color-bg-accent: #bb4656;
     --color-bg-behind: #22252a;
 
     --color-interactive-bg-normal: #3c4452;

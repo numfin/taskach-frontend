@@ -11,11 +11,11 @@ export async function handlePromise<
   operation: Promise<Data>,
   mapOk = (((data: Data) => data) as unknown) as (data: Data) => ResultData,
   mapErr = (((err: PromiseError) => err) as unknown) as (
-    err: PromiseError
-  ) => ResultError
+    err: PromiseError,
+  ) => ResultError,
 ): Result<ResultData, ResultError> {
   try {
-    return { ok: true, result: mapOk(await operation) };
+    return Promise.resolve({ ok: true, result: mapOk(await operation) });
   } catch (error) {
     return { ok: false, error: mapErr(error as any) };
   }
