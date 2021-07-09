@@ -1,4 +1,4 @@
 export enum LayoutType {
-  main,
-  login,
+  Main,
+  Login,
 }

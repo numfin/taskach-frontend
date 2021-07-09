@@ -1,14 +1,16 @@
-import { defineComponent, PropType } from "vue";
-import { RouteLocationNormalized, RouterView } from "vue-router";
-import { MainLayout } from "./main/main.layout";
-import { LoginLayout } from "./login/login.layout";
+import { defineComponent, PropType } from 'vue';
+import { RouteLocationNormalized, RouterView } from 'vue-router';
 
-import "tailwindcss/tailwind.css";
-import { UserState } from "~/app/user/user.state";
-import { LayoutType } from "./layout-type";
+import { LoginLayout } from './login/login.layout';
+import { MainLayout } from './main/main.layout';
+import { LayoutType } from './layout-type';
+
+import { UserState } from '~/app/user/user.state';
+
+import 'tailwindcss/tailwind.css';
 
 export const Root = defineComponent({
-  name: "Root",
+  name: 'Root',
   setup() {
     return UserState.state;
   },
@@ -16,7 +18,7 @@ export const Root = defineComponent({
     return (
       <RouterViewWrapper
         slot={(route, Component) => {
-          if (route.meta.layout === LayoutType.login) {
+          if (route.meta.layout === LayoutType.Login) {
             return <LoginLayout>{Component}</LoginLayout>;
           }
           return <MainLayout>{Component}</MainLayout>;
@@ -27,11 +29,11 @@ export const Root = defineComponent({
 });
 
 const RouterViewWrapper = defineComponent({
-  name: "AppView",
+  name: 'AppView',
   props: {
     slot: {
       type: Function as PropType<
-        (route: RouteLocationNormalized, Component: any) => JSX.Element
+        (route: RouteLocationNormalized, Component: unknown) => JSX.Element
       >,
       required: true,
     },
@@ -45,7 +47,7 @@ const RouterViewWrapper = defineComponent({
             Component,
           }: {
             route: RouteLocationNormalized;
-            Component: any;
+            Component: unknown;
           }) => this.slot(route, Component),
         }}
       />

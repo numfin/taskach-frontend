@@ -1,7 +1,7 @@
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: "Root",
+  name: 'Root',
   render() {
     return <div>root</div>;
   },

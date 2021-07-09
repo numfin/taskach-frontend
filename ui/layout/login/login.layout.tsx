@@ -1,7 +1,7 @@
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export const LoginLayout = defineComponent({
-  name: "LoginLayout",
+  name: 'LoginLayout',
   render() {
     return <div class="min-h-screen">{this.$slots.default?.()}</div>;
   },
