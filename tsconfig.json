@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "moduleResolution": "node",
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "~/*": ["./*"]
+    },
+    "types": ["vite/client"],
+    "strict": true
+  },
+  "exclude": ["node_modules"],
+  "include": ["./app/**/*", "./ui/**/*", "routes/**/*"]
+}
