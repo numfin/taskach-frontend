@@ -9,7 +9,15 @@
       "~/*": ["./*"]
     },
     "types": ["vite/client"],
-    "strict": true
+    "strict": true,
+    "plugins": [
+      {
+        "name": "typescript-plugin-css-modules",
+        "options": {
+          "classnameTransform": "dashesOnly"
+        }
+      }
+    ]
   },
   "exclude": ["node_modules"],
   "include": ["./app/**/*", "./ui/**/*", "routes/**/*"]

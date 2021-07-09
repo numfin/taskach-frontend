@@ -9,4 +9,9 @@ export default defineConfig({
       "~": resolve(__dirname),
     },
   },
+  css: {
+    modules: {
+      localsConvention: "dashesOnly"
+    }
+  }
 });
