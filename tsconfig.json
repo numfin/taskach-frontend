@@ -8,6 +8,13 @@
     "paths": {
       "~/*": ["./*"]
     },
+    "noImplicitAny": true,
+    "strictBindCallApply": true,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "alwaysStrict": true,
+    "noImplicitReturns": true,
     "types": ["vite/client"],
     "strict": true,
     "plugins": [

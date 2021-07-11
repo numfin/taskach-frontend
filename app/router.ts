@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-import { RootView } from '~/routes/root.route';
+import { LoginRoute } from '~/routes/login/login.route';
+import { RootRoute } from '~/routes/root.route';
 
 export function createAppRouter() {
   return createRouter({
@@ -8,6 +9,6 @@ export function createAppRouter() {
     scrollBehavior(to, from, savedPosition) {
       return savedPosition ?? { top: 0, left: 0 };
     },
-    routes: [RootView],
+    routes: [RootRoute, LoginRoute],
   });
 }

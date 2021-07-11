@@ -1,10 +1,12 @@
+import 'tailwindcss/tailwind.css';
 import { createApp } from 'vue';
 
-import { Root } from '../ui/layout/root';
 import { createAppRouter } from './router';
 
+import { App } from '~/ui/layout/app';
+
 function init() {
-  const app = createApp(Root);
+  const app = createApp(App);
   app.use(createAppRouter());
   app.mount('#app');
   return app;

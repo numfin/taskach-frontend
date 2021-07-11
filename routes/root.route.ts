@@ -1,11 +1,7 @@
 import { RouteRecordRaw } from 'vue-router';
 
-import { LayoutType } from '~/ui/layout/layout-type';
-
-export const RootView: RouteRecordRaw = {
+export const RootRoute: RouteRecordRaw = {
+  name: 'Root',
   path: '/',
   component: () => import('./root.view'),
-  meta: {
-    layout: LayoutType.Login,
-  },
 };
