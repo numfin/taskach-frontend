@@ -1,0 +1,21 @@
+.enter-from-class,
+.leave-to-class {
+  margin-top: 0rem;
+  opacity: 0;
+  height: 0rem;
+  max-height: 0rem;
+}
+
+.enter-to-class,
+.leave-from-class {
+  margin-top: 0.5rem;
+  opacity: 1;
+  height: 1rem;
+  max-height: 1rem;
+}
+
+.enter-active-class,
+.leave-active-class {
+  bottom: 0;
+  transition: all 0.3s;
+}

@@ -3,7 +3,8 @@
       "source.fixAll.eslint": true
     },
     "eslint.format.enable": true,
-    "eslint.validate": ["typescript", "javascript", "typescriptreact"],
+    "eslint.validate": ["vue", "typescript", "javascript", "typescriptreact"],
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
     "typescript.tsdk": "node_modules/typescript/lib",
+    "editor.snippetSuggestions": "none",
 }
