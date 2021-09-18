@@ -1,8 +1,9 @@
-import { InputField, InputTypes } from './input-field';
+import { FieldInput } from './input-field';
+import { InputTypes } from './..';
 
 type FormFields = Record<
   string,
-  { [key: string]: FormFields } | FormFields[] | InputField<InputTypes>
+  { [key: string]: FormFields } | FormFields[] | FieldInput<InputTypes>
 >;
 
 export function useForm<T>(fields: T) {
@@ -14,7 +15,7 @@ export function useForm<T>(fields: T) {
 function validate(fields: FormFields | FormFields[]) {
   let valid = true;
   for (const entry of Object.values(fields)) {
-    if (entry instanceof InputField) {
+    if (entry instanceof FieldInput) {
       // validate field
       if (!entry.validate()) {
         valid = false;

@@ -16,18 +16,26 @@ export const InputText = defineComponent({
       required: true,
     },
   },
-  render() {
-    return (
+  setup(props, { attrs }) {
+    return () => (
       <input
         {...{
           type: 'text',
-          ...this.$attrs,
+          ...attrs,
         }}
-        class={['w-full', 'outline-none', 'text-gray-600']}
-        value={this.value}
+        class={[
+          'w-full',
+          'outline-none',
+          'text-gray-600',
+          'py-2 px-4',
+          'bg-white',
+          'rounded',
+          'ring-2 ring-gray-200 focus-within:ring-gray-400',
+        ]}
+        value={props.value}
         onInput={withModifiers(
           (event: { target: HTMLInputElement }) => {
-            this.on.input(event.target.value);
+            props.on.input(event.target.value);
           },
           ['prevent'],
         )}

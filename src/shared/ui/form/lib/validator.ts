@@ -1,6 +1,6 @@
 import { Ref, ref } from 'vue';
 
-import { InputTypes } from './input-field';
+import { InputTypes } from './..';
 
 export abstract class Validator<T> {
   /** Error = string; Success = null */
@@ -8,7 +8,8 @@ export abstract class Validator<T> {
   abstract name: string;
 }
 
-export class ValidationRules<T extends InputTypes> {
+/** Validation rules wrapper */
+export class ValidationRules<T = InputTypes> {
   rules: Validator<T>[] = [];
   errors: Ref<string[]> = ref([]);
 

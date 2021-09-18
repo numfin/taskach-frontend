@@ -1,32 +1,33 @@
 import { computed, ComputedRef, ref, Ref, watch } from 'vue';
 
-import { InputTypes } from './..';
 import { ValidationRules } from './validator';
 
-interface FieldInputOptions<V = InputTypes> {
+type FieldSelectOptions<V, ItemV> = {
   value: Ref<V>;
-  variants?: Ref<{ value: V; title: string }[]>;
   validation?: ValidationRules<V>;
-}
+  items: Ref<ItemV[]>;
+};
 
-export class FieldInput<V = InputTypes> {
+/** Field that contains value variants */
+export class FieldSelect<V, ItemV> {
   private _isValid: ComputedRef<boolean>;
   private _isDirty = ref(false);
+  private _variants: Ref<ItemV[]>;
   public set: (v: V) => void;
 
-  constructor(private options: FieldInputOptions<V>) {
+  constructor(private options: FieldSelectOptions<V, ItemV>) {
     this._isValid = computed(() => {
       if (options.validation && this._isDirty.value) {
         return options.validation.errors.value.length === 0;
       }
       return true;
     });
+    this._variants = options.items;
 
-    watch([options.value, () => options.variants?.value], ([value]) => {
+    watch(options.value, (value) => {
       this.validate(value);
     });
     options.validation?.validate(options.value.value);
-
     this.set = (v: V) => {
       options.value.value = v;
     };
@@ -40,10 +41,13 @@ export class FieldInput<V = InputTypes> {
     return !!isValid;
   }
 
-  static new<V extends InputTypes = never, U extends V = V>(
-    options: FieldInputOptions<U>,
-  ): FieldInput<U> {
-    return new FieldInput(options);
+  static new<
+    V extends InputTypes = never,
+    ItemV extends unknown = never,
+    U extends V = V,
+    X extends ItemV = ItemV,
+  >(options: FieldSelectOptions<U, X>) {
+    return new FieldSelect<U, X>(options);
   }
 
   set value(v: V) {
@@ -51,6 +55,10 @@ export class FieldInput<V = InputTypes> {
   }
   get value() {
     return this.options.value.value;
+  }
+
+  get variants(): ItemV extends never ? undefined : ItemV[] {
+    return this._variants?.value as ItemV extends never ? undefined : ItemV[];
   }
 
   get errors() {
@@ -63,3 +71,5 @@ export class FieldInput<V = InputTypes> {
     return this._isValid.value;
   }
 }
+
+export type InputTypes = string | number | boolean | undefined;

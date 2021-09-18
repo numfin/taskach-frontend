@@ -5,7 +5,7 @@ import {
   ValidationRules,
   InputText,
   Input,
-  InputField,
+  FieldInput,
   Rule,
 } from '~/shared/ui/form';
 import { userStore } from '~/entities/user/user.state';
@@ -17,11 +17,11 @@ const LoginView = defineComponent({
   name: 'Login',
   setup() {
     const form = useForm({
-      login: InputField.new<string>({
+      login: FieldInput.new<string>({
         value: ref(''),
         validation: new ValidationRules([Rule.IsRequired, Rule.IsEmail]),
       }),
-      password: InputField.new<string>({
+      password: FieldInput.new<string>({
         value: ref(''),
         validation: new ValidationRules([Rule.IsRequired, Rule.MinLen(8)]),
       }),
@@ -63,10 +63,10 @@ const LoginView = defineComponent({
           field={this.form.login}
           slots={{
             label: 'E-mail',
-            input: ({ value }) => (
+            input: ({ value, set }) => (
               <InputText
                 value={value}
-                on={{ input: this.form.login.set }}
+                on={{ input: set }}
                 autocomplete="username"
               />
             ),
@@ -76,10 +76,10 @@ const LoginView = defineComponent({
           field={this.form.password}
           slots={{
             label: 'Password',
-            input: ({ value, onInput }) => (
+            input: ({ value, set }) => (
               <InputText
                 value={value}
-                on={{ input: onInput }}
+                on={{ input: set }}
                 autocomplete="username"
                 type="password"
               />

@@ -1,0 +1,18 @@
+.enter-from-class,
+.leave-to-class {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.enter-to-class,
+.leave-from-class {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.enter-active-class,
+.leave-active-class {
+  transition-timing-function: ease;
+  transition-duration: 0.25s;
+  transition-property: opacity transform;
+}

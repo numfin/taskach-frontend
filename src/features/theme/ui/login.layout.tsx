@@ -10,10 +10,10 @@ export const LoginLayout = defineComponent({
   },
   render() {
     return (
-      <div class="min-h-screen bg-gradient-to-br from-blue-500 to-transparent flex justify-center items-center">
+      <div class="bg-gradient-to-br to-transparent flex min-h-screen from-blue-700 to-blue-200 justify-center items-center">
         {vif([
-          [this.loading, <Loader size={LoaderSize.Big} />],
-          [!this.loading, this.$slots.default?.()],
+          [() => <Loader size={LoaderSize.Big} />, this.loading],
+          [() => this.$slots.default?.(), !this.loading],
         ])}
       </div>
     );

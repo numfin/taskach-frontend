@@ -16,6 +16,7 @@ export const Loader = defineComponent({
       type: Number as PropType<LoaderSize>,
       default: LoaderSize.Normal,
     },
+    dark: Boolean,
   },
   render() {
     return (
@@ -43,12 +44,14 @@ export const Loader = defineComponent({
             >
               <div
                 class={[
-                  'bg-white rounded-full absolute top-0 left-0 transform-gpu',
+                  'rounded-full absolute top-0 left-0 transform-gpu',
 
                   {
                     'w-5 h-5': this.size === LoaderSize.Big,
                     'w-3 h-3': this.size === LoaderSize.Normal,
                     'w-2 h-2': this.size === LoaderSize.Small,
+                    'bg-white': !this.dark,
+                    'bg-blue-500': this.dark,
                   },
                 ]}
               />
